@@ -1,0 +1,18 @@
+[package]
+name = "ProofOfAttendance"
+version = "1.0.0"
+authors = ["Your Name <your.email@example.com>"]
+
+[addresses]
+std = "0x1"
+MyModule = "0xa1baaf5d4a91006c673cb8b63180fc77871144ee0d127c5f9a2283e548e2f4c8"
+
+[dev-addresses]
+MyModule = "0x123"
+
+[dependencies.AptosFramework]
+git = "https://github.com/aptos-labs/aptos-core.git"
+rev = "mainnet"
+subdir = "aptos-move/framework/aptos-framework"
+
+[dev-dependencies]
