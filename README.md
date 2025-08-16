@@ -1,6 +1,8 @@
 # Proof of Attendance dApp
 
 A complete decentralized application (dApp) built on the Aptos blockchain that allows event organizers to create events and users to claim attendance badges as proof of participation.
+<img width="2550" height="1405" alt="Screenshot 2025-08-16 154848" src="https://github.com/user-attachments/assets/d566ca46-2789-4a03-8c84-940d1696adff" />
+
 
 ## 🌟 Features
 
