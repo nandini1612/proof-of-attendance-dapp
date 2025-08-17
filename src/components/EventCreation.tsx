@@ -30,21 +30,22 @@ const EventCreation: React.FC<EventCreationProps> = ({ onEventCreated }) => {
 
     try {
       const response = await signAndSubmitTransaction({
-        type: "entry_function_payload",
-        function: `${aptosClient.MODULE_ADDRESS}::ProofOfAttendance::create_event`,
-        type_arguments: [],
-        arguments: [Array.from(new TextEncoder().encode(eventName.trim()))]
+        data: {
+          function: `${aptosClient.MODULE_ADDRESS}::ProofOfAttendance::create_event`,
+          typeArguments: [],
+          functionArguments: [Array.from(new TextEncoder().encode(eventName.trim()))],
+        },
       });
-      
+
       // Wait for transaction confirmation
       await aptosClient.waitForTransaction(response.hash);
-      
+
       toast.success('Event created successfully!');
       setEventName('');
       onEventCreated();
     } catch (error: any) {
       console.error('Error creating event:', error);
-      
+
       if (error.message?.includes('RESOURCE_ALREADY_EXISTS')) {
         toast.error('You can only create one event per account. Please use a different account.');
       } else if (error.message?.includes('rejected')) {
@@ -55,7 +56,7 @@ const EventCreation: React.FC<EventCreationProps> = ({ onEventCreated }) => {
     } finally {
       setIsCreating(false);
     }
-  };
+};
 
   return (
     <div className="bg-white rounded-xl shadow-lg p-8">

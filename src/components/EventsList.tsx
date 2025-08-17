@@ -35,14 +35,13 @@ const EventsList: React.FC<EventsListProps> = ({
     setClaimingEvents(prev => new Set(prev).add(organizerAddress));
 
     try {
-      const transaction = {
-        type: "entry_function_payload",
-        function: `${aptosClient.MODULE_ADDRESS}::ProofOfAttendance::claim_attendance`,
-        type_arguments: [],
-        arguments: [organizerAddress],
-      };
-
-      const response = await signAndSubmitTransaction(transaction);
+      const response = await signAndSubmitTransaction({
+        data: {
+          function: `${aptosClient.MODULE_ADDRESS}::ProofOfAttendance::claim_attendance`,
+          typeArguments: [],
+          functionArguments: [organizerAddress],
+        },
+      });
 
       // Wait for transaction confirmation
       await aptosClient.waitForTransaction(response.hash);
